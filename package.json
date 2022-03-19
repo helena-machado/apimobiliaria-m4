@@ -1,0 +1,33 @@
+{
+  "name": "api-imobiliaria-final",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helena-machado/apimobiliaria.git"
+  },
+  "author": "Helena Machado",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/helena-machado/apimobiliaria/issues"
+  },
+  "homepage": "https://github.com/helena-machado/apimobiliaria#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv-safe": "^8.2.0",
+    "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "sequelize": "^6.17.0",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "type": "module",
+  "description": ""
+}
