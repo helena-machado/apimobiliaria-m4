@@ -8,14 +8,14 @@ export class UserController {
     if (!nome || !sobrenome || !cpf || !email || !senha || !cidade || !cargo) {
       return res
         .status(400)
-        .json({ msg: "O preenchimento de todos os campos é obrigatório." });
+        .json({ alerta: "O preenchimento de todos os campos é obrigatório." });
     }
 
     const usuarioExiste = await User.findOne({ where: { email: email } });
 
     if (usuarioExiste) {
       return res.status(400).json({
-        msg: "Este e-mail já está cadastrado. Por favor, efetue o login.",
+        alerta: "Este e-mail já está cadastrado. Por favor, utilize outro.",
       });
     }
 
@@ -34,19 +34,22 @@ export class UserController {
 
     try {
       await User.create(usuario);
-      res.status(201).json({ msg: "Usuário cadastrado com sucesso!" });
+      res.status(201).json({
+        mensagem: "Usuário cadastrado com sucesso!",
+        dados: { usuario },
+      });
     } catch (error) {
-      res.status(400).json({ msg: error });
+      res.status(400).json({ erro: error });
     }
   }
 
   static async todosOsUsuarios(req, res) {
     const usuarios = await User.findAll({ attributes: { exclude: ["senha"] } });
 
-    if (!usuarios) {
-      return res.status(400).json({ msg: "Não há usuários cadastrados" });
+    if (!usuarios || usuarios == null) {
+      return res.status(400).json({ alerta: "Não há usuários cadastrados" });
     }
-    res.status(200).json({ usuarios });
+    res.status(200).json({ dados: { usuarios } });
   }
 
   static async usuarioPeloId(req, res) {
@@ -57,9 +60,9 @@ export class UserController {
     });
 
     if (!usuario) {
-      return res.status(400).json({ msg: "Usuário não encontrado!" });
+      return res.status(400).json({ alerta: "Usuário não encontrado!" });
     }
-    res.status(200).json({ usuario });
+    res.status(200).json({ dados: { usuario } });
   }
 
   static async editarUsuarioPeloId(req, res) {
@@ -68,7 +71,8 @@ export class UserController {
 
     if (!nome || !sobrenome || !cpf || !email || !senha || !cidade || !cargo) {
       return res.status(400).json({
-        msg: "Por favor, preencha todos os campos antes de prosseguir novamente.",
+        alerta:
+          "Por favor, preencha todos os campos antes de prosseguir novamente.",
       });
     }
 
@@ -76,7 +80,8 @@ export class UserController {
 
     if (!usuarioExiste) {
       return res.status(400).json({
-        msg: "Usuário não encontrado. Por favor, verifique antes de prosseguir novamente.",
+        alerta:
+          "Usuário não encontrado. Por favor, verifique o ID informado de prosseguir novamente.",
       });
     }
 
@@ -99,11 +104,11 @@ export class UserController {
         attributes: { exclude: ["senha"] },
       });
       res.json({
-        msg: "Usuário atualizado com sucesso!",
+        mensagem: "Usuário atualizado com sucesso!",
         data: { dadosAtualizados },
       });
     } catch (error) {
-      res.status(400).json({ msg: error });
+      res.status(400).json({ erro: error });
     }
   }
 
@@ -113,15 +118,17 @@ export class UserController {
 
     if (!usuario) {
       return res.status(400).json({
-        msg: "Usuário não encontrado, verifique o ID inserido.",
+        alerta: "Usuário não encontrado, verifique o ID inserido.",
       });
     }
 
     try {
       await User.destroy({ where: usuario });
-      return res.status(200).json({ msg: "Usuário excluido com sucesso!" });
+      return res
+        .status(200)
+        .json({ mensagem: "Usuário excluido com sucesso!" });
     } catch (error) {
-      return res.status(400).json({ msg: error });
+      return res.status(400).json({ erro: error });
     }
   }
 }

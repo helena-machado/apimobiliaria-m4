@@ -7,7 +7,7 @@ const User = sequelize.define("user", {
     allowNull: false,
     validate: {
       notNull: {
-        msg: "Por favor, preencha seu nome!",
+        alerta: "Por favor, preencha seu nome!",
       },
     },
   },
@@ -17,7 +17,7 @@ const User = sequelize.define("user", {
     allowNull: false,
     validate: {
       notNull: {
-        msg: "Por favor, preencha seu sobrenome!",
+        alerta: "Por favor, preencha seu sobrenome!",
       },
     },
   },
@@ -27,14 +27,15 @@ const User = sequelize.define("user", {
     allowNull: false,
     validate: {
       notNull: {
-        msg: "Por favor, informe os números do seu CPF.",
+        alerta: "Por favor, informe os números do seu CPF.",
       },
       isAlphanumeric: {
-        msg: "Por favor, complete este campo utilizando apenas os números do seu CPF.",
+        alerta:
+          "Por favor, complete este campo utilizando apenas os números do seu CPF.",
       },
       len: {
         args: [11, 11],
-        msg: "Insira um número de CPF válido.",
+        alerta: "Insira um número de CPF válido.",
       },
     },
   },
@@ -43,8 +44,8 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notNull: { msg: "O preenchimento do e-mail é obrigatório!" },
-      isEmail: { msg: "Informe um e-mail válido para prosseguir." },
+      notNull: { alerta: "O preenchimento do e-mail é obrigatório!" },
+      isEmail: { alerta: "Informe um e-mail válido para prosseguir." },
     },
   },
 
@@ -52,7 +53,7 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notNull: { msg: "Este campo não pode ser deixado em branco!" },
+      notNull: { alerta: "Este campo não pode ser deixado em branco!" },
     },
   },
 
@@ -60,7 +61,9 @@ const User = sequelize.define("user", {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notNull: { msg: "Por favor, informe a cidade onde reside atualmente." },
+      notNull: {
+        alerta: "Por favor, informe a cidade onde reside atualmente.",
+      },
     },
   },
 
