@@ -48,4 +48,17 @@ export class UserController {
     }
     res.status(200).json({ usuarios });
   }
+
+  static async usuarioPeloId(req, res) {
+    const { id } = req.params;
+
+    const usuario = await User.findByPk(id, {
+      attributes: { exclude: ["senha"] },
+    });
+
+    if (!usuario) {
+      return res.status(400).json({ msg: "Usuário não encontrado!" });
+    }
+    res.status(200).json({ usuario });
+  }
 }
