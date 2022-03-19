@@ -106,4 +106,22 @@ export class UserController {
       res.status(400).json({ msg: error });
     }
   }
+
+  static async excluirPeloId(req, res) {
+    const { id } = req.params;
+    const usuario = await User.findOne({ where: { id: id }, raw: true });
+
+    if (!usuario) {
+      return res.status(400).json({
+        msg: "Usuário não encontrado, verifique o ID inserido.",
+      });
+    }
+
+    try {
+      await User.destroy({ where: usuario });
+      return res.status(200).json({ msg: "Usuário excluido com sucesso!" });
+    } catch (error) {
+      return res.status(400).json({ msg: error });
+    }
+  }
 }
