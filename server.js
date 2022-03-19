@@ -2,11 +2,16 @@ import "dotenv-safe/config.js";
 import express from "express";
 import sequelize from "./src/db/connection.js";
 
+import User from "./src/models/UserModel.js";
+import router from "./src/routes/UserRoutes.js";
+
 const port = process.env.port;
 
 const app = express();
 
 app.use(express.json());
+
+app.use("/user", router);
 
 sequelize
   .sync()

@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/helena-machado/apimobiliaria.git"
+    "url": "git+https://github.com/helena-machado/apimobiliaria-m4.git"
   },
   "author": "Helena Machado",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/helena-machado/apimobiliaria/issues"
+    "url": "https://github.com/helena-machado/apimobiliaria-m4/issues"
   },
-  "homepage": "https://github.com/helena-machado/apimobiliaria#readme",
+  "homepage": "https://github.com/helena-machado/apimobiliaria-m4#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "dotenv-safe": "^8.2.0",
