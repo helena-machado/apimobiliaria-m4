@@ -39,4 +39,13 @@ export class UserController {
       res.status(400).json({ msg: error });
     }
   }
+
+  static async todosOsUsuarios(req, res) {
+    const usuarios = await User.findAll({ attributes: { exclude: ["senha"] } });
+
+    if (!usuarios) {
+      return res.status(400).json({ msg: "Não há usuários cadastrados" });
+    }
+    res.status(200).json({ usuarios });
+  }
 }
