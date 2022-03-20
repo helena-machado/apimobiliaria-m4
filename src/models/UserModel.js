@@ -73,7 +73,6 @@ const User = sequelize.define("user", {
       "Corretora",
       "Usuário",
       "Usuária",
-      "Imobiliária",
       "Admnistrador",
       "Admnistradora"
     ),
