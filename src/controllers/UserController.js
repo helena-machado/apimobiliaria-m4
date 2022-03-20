@@ -60,7 +60,7 @@ export class UserController {
     });
 
     if (!usuario) {
-      return res.status(400).json({ alerta: "Usuário não encontrado!" });
+      return res.status(404).json({ alerta: "Usuário não encontrado!" });
     }
     res.status(200).json({ dados: { usuario } });
   }
@@ -79,7 +79,7 @@ export class UserController {
     const usuarioExiste = await User.findOne({ where: { id: id }, raw: true });
 
     if (!usuarioExiste) {
-      return res.status(400).json({
+      return res.status(404).json({
         alerta:
           "Usuário não encontrado. Por favor, verifique o ID informado de prosseguir novamente.",
       });

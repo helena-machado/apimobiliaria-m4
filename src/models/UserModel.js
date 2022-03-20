@@ -77,6 +77,18 @@ const User = sequelize.define("user", {
       "Admnistradora"
     ),
     allowNull: false,
+    validate: {
+      isIn: [
+        [
+          "Corretor",
+          "Corretora",
+          "Usuário",
+          "Usuária",
+          "Admnistrador",
+          "Admnistradora",
+        ],
+      ],
+    },
   },
 });
 
