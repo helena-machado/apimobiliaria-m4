@@ -1,7 +1,9 @@
 import { Sequelize } from "sequelize";
-import "dotenv-safe/config.js";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  host: "./src/db/database.sqlite",
+});
 
 async function conectar() {
   try {

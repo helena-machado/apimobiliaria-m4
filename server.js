@@ -1,4 +1,3 @@
-import "dotenv-safe/config.js";
 import express from "express";
 import sequelize from "./src/db/connection.js";
 
