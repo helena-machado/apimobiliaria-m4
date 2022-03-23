@@ -4,7 +4,7 @@ import sequelize from "./src/db/connection.js";
 import User from "./src/models/UserModel.js";
 import router from "./src/routes/UserRoutes.js";
 
-const port = process.env.port || 3001;
+const port = process.env.PORT || 3001;
 
 const app = express();
 
